@@ -1,4 +1,5 @@
-alias eup="curl http://fuzzylines.com/developer5415/env_update.sh | bash"
+# Update environment
+alias eup="cd ~/dotfiles && git pull origin master && cd - && source ~/.profile"
 
 alias ls="ls -F --color=tty"
 alias ll="ls -lh"
