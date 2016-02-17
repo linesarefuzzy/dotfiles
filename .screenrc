@@ -1,0 +1,18 @@
+shell -$SHELL
+defscrollback 10000
+altscreen on
+hardstatus alwayslastline '%{= kG}[ %{G}%H %{g}][%= %{=kw}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][ %{B}%Y-%m-%d %{g}]'
+bind R eval "source $HOME/.screenrc" "echo '.screenrc reloaded'"
+bind ^c stuff "screen -X chdir \$PWD; screen^M"
+vbell off
+term xterm-256color
+
+bindkey "^[y" eval "copy" "stuff ^y"
+bindkey -m "^[y" stuff ^y
+bindkey -m "^[e" stuff ^e
+bindkey "^[u" eval "copy" "stuff ^u"
+bindkey -m "^[u" stuff ^u
+bindkey -m "^[d" stuff ^d
+
+# output buffer scrolling 
+termcapinfo xterm* ti@:te@
