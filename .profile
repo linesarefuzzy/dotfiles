@@ -1,3 +1,5 @@
+export TZ="America/New_York"
+
 # Update environment
 alias eup="cd ~/dotfiles && git pull origin master && cd - && source ~/.profile"
 
@@ -15,6 +17,11 @@ alias dnsflush="dscacheutil -flushcache"
 alias be="bundle exec"
 alias zed="zedrem -key E9BB9D9884B747BD8F988EABDDE89895"
 alias sdr="screen -d -r"
+
+# git
+alias g="git status"
+alias gl="git pull"
+alias gh="git push"
 
 # command prompt
 #export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\h \[$(tput setaf 4)\]\w \\$ \[$(tput setaf 7)\]\[$(tput sgr0)\]"
