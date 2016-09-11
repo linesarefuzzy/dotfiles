@@ -78,6 +78,9 @@ set hlsearch
 set ignorecase
 set smartcase
 
+" Search as you type
+set incsearch
+
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
 
@@ -111,10 +114,11 @@ set t_vb=
 
 " Enable use of the mouse for all modes
 set mouse=a
+set ttymouse=xterm2
 
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
-set cmdheight=2
+"set cmdheight=2
 
 " Display line numbers on the left
 set number
@@ -188,7 +192,6 @@ imap ^[OH ^[0i
 
 " Colors
 set term=xterm-256color
-set ttymouse=xterm2
 colo distinguished
 
 " Show hard tabs
@@ -198,9 +201,6 @@ set listchars=tab:>\
 " Indent/dedent (`>`/`<`) without losing selection
 vnoremap > >gv
 vnoremap < <gv
-
-" Search options
-set incsearch
 
 " Tree style file list
 let g:netrw_liststyle=3
