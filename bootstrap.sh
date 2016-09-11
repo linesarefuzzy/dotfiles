@@ -11,7 +11,7 @@ prevdir=`pwd`
 cd ~
 mkdir -p $olddir
 
-# move any existing dotfiles in homedir to dotfiles_old directory 
+# move any existing dotfiles in homedir to dotfiles_old directory
 for file in $files; do
   echo "Moving $file to $olddir"
   mv -i ~/$file ~/dotfiles_old/
@@ -20,7 +20,7 @@ done
 # create symlinks
 for file in $files; do
   echo "Creating symlink for $file in ~"
-  ln -si $dir/$file ~/
+  ln -siv $dir/$file ~/
 done
 
 #mkdir -p ~/bin
