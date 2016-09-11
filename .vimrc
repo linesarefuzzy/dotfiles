@@ -78,6 +78,9 @@ set hlsearch
 set ignorecase
 set smartcase
 
+" Search as you type
+set incsearch
+
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
 
@@ -111,6 +114,7 @@ set t_vb=
 
 " Enable use of the mouse for all modes
 set mouse=a
+set ttymouse=xterm2
 
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
@@ -158,20 +162,53 @@ map Y y$
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
 
+" Editor tab navigation
+nnoremap tn  :tabnext<CR>
+nnoremap tl  :tabnext<CR>
+nnoremap tp  :tabprev<CR>
+nnoremap th  :tabprev<CR>
+nnoremap tt  :tabnew<CR>
+nnoremap t1  :tabfirst<CR>
+nnoremap t2  2gt
+nnoremap t3  3gt
+nnoremap t4  4gt
+nnoremap t5  5gt
+nnoremap t6  6gt
+nnoremap t7  7gt
+nnoremap t8  8gt
+nnoremap t9  :tablast<CR>
+nnoremap te  :tabedit<Space>
+nnoremap tm  :tabmove<Space>
+nnoremap tw  :tabclose<CR>
+
+" Home and end
+nmap ^[OF $
+nmap ^[OH 0
+imap ^[OF ^[$i
+imap ^[OH ^[0i
+
+
 "------------------------------------------------------------
 
+" Colors
 set term=xterm-256color
-set ttymouse=xterm2
 colo distinguished
 
 " Show hard tabs
 set list
 set listchars=tab:>\
 
-" Indent/dedent (`>`/`<`) without losing selection (not working)
-"vnoremap > >gv
-"vnoremap < <gv
+" Indent/dedent (`>`/`<`) without losing selection
+vnoremap > >gv
+vnoremap < <gv
 
-" Search options
-set incsearch
+" Tree style file list
+let g:netrw_liststyle=3
+" Vertical split right instead of left
+"let g:netrw_altv = 1
 
+" Auto-reload vimrc on change
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
