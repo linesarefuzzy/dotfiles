@@ -1,6 +1,13 @@
 #!/bin/bash
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 
+# TODO:
+# - split into .alias, etc?
+# - use for local mac - figure out local overrides somehow?
+# - gitconfig
+# - gitignore (may have to change to not using . in front of repo files)
+# - git-completion.bash
+
 dir=dotfiles                    # dotfiles directory
 olddir=dotfiles_old             # old dotfiles backup directory
 
