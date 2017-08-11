@@ -53,4 +53,4 @@ export EDITOR=vim
 # [ -z "$STY" ] && screen -r
 
 # Activate autojump if installed
-[[ -s /home/deploy/.autojump/etc/profile.d/autojump.sh ]] && source /home/deploy/.autojump/etc/profile.d/autojump.sh
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
