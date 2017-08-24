@@ -5,7 +5,7 @@ dir=dotfiles                    # dotfiles directory
 olddir=dotfiles_old             # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir
-files=".profile .screenrc .vimrc .vim .vimpkg"
+files="profile screenrc vimrc vim vimpkg"
 
 prevdir=`pwd`
 cd ~
@@ -14,13 +14,13 @@ mkdir -p $olddir
 # move any existing dotfiles in homedir to dotfiles_old directory
 for file in $files; do
   echo "Moving $file to $olddir"
-  mv -i ~/$file ~/dotfiles_old/
+  mv -i ~/.$file ~/dotfiles_old/
 done
 
 # create symlinks
 for file in $files; do
-  echo "Creating symlink for $file in ~"
-  ln -siv $dir/$file ~/
+  echo "Creating symlink for .$file in ~"
+  ln -siv $dir/$file ~/.$file
 done
 
 #mkdir -p ~/bin
