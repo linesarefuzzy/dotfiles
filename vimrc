@@ -18,6 +18,9 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-airline/vim-airline'
 Plugin 'sjl/gundo.vim'
+Plugin 'maxbrunsfeld/vim-yankstack'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'airblade/vim-gitgutter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -205,12 +208,16 @@ endif
 " Auto-reload vimrc on change
 augroup myvimrc
     au!
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | AirlineRefresh | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
 
-" Pathogen package manager
-execute pathogen#infect()
-call pathogen#helptags()
+" Option as meta key
+let c='a'
+while c <= 'z'
+  exec "set <M-".tolower(c).">=\e".c
+  exec "imap \e".c." <M-".tolower(c).">"
+  let c = nr2char(1+char2nr(c))
+endw
 
 
 " -----------------------------------------------------------

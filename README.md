@@ -6,7 +6,6 @@
 
 ## TODO:
 
-* git-completion.bash
 * install autojump
 * gitconfig
 * gitignore
