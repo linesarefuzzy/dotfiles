@@ -15,7 +15,7 @@ alias cp="cp -i" # confirm overwrites
 alias mv="mv -i" # ditto
 alias dnsflush="dscacheutil -flushcache"
 alias be="bundle exec"
-alias zed="zedrem -key E9BB9D9884B747BD8F988EABDDE89895"
+#alias zed="zedrem -key E9BB9D9884B747BD8F988EABDDE89895"
 alias sdr="screen -dR"
 alias autojump_install="mkdir -p bin && cd ~/bin && git clone git://github.com/joelthelion/autojump.git && cd autojump && ./install.py"
 

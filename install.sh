@@ -13,7 +13,7 @@ mkdir -p $olddir
 
 # move any existing dotfiles in homedir to dotfiles_old directory
 for file in $files; do
-  echo "Moving $file to $olddir"
+  echo "Moving .$file to $olddir"
   mv -i ~/.$file ~/dotfiles_old/
 done
 
