@@ -17,6 +17,7 @@ Plugin 'ervandew/supertab'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-airline/vim-airline'
+Plugin 'sjl/gundo.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -177,6 +178,121 @@ set expandtab
 
 
 "------------------------------------------------------------
+" Miscellaneous
+
+" Colors
+set term=xterm-256color
+colo distinguished
+
+" Show hard tabs
+set list
+set listchars=tab:>\
+
+" Indent/dedent (`>`/`<`) without losing selection
+vnoremap > >gv
+vnoremap < <gv
+
+" Tree style file list
+let g:netrw_liststyle=3
+" Vertical split right instead of left
+"let g:netrw_altv = 1
+
+" Jump to the last position when reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+" Auto-reload vimrc on change
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
+
+" Pathogen package manager
+execute pathogen#infect()
+call pathogen#helptags()
+
+
+" -----------------------------------------------------------
+" Plugins
+
+""" NERDTree """
+
+"autocmd vimenter * NERDTree
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+map <C-\>      :NERDTreeTabsToggle<CR>
+map <leader>f  :NERDTreeFind<CR>
+
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+""" NERDCommenter """
+
+" Add spaces after comment delimiters by default
+"let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+"let g:NERDAltDelims_java = 2
+
+" Add your own custom formats or override the defaults
+"let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+"let g:NERDTrimTrailingWhitespace = 1
+
+
+" """ Selecta """
+" 
+" " Find all files in all non-dot directories starting in the working directory.
+" " Fuzzy select one of those. Open the selected file with :e.
+" nnoremap <leader>e :SelectaFile<cr>
+" 
+" " As above, but will open in a :split
+" nnoremap <leader>s :SelectaSplit<cr>
+" 
+" " As above, but will open in a :vsplit
+" nnoremap <leader>v :SelectaVsplit<cr>
+" 
+" " As above, but will open in a :tabedit
+" nnoremap <leader>t :SelectaTabedit<cr>
+" 
+" " Find all buffers that have been opened.
+" " Fuzzy select one of those. Open the selected file with :b.
+" nnoremap <leader>b :SelectaBuffer<cr>
+" 
+" " Find previously run commands.
+" " Fuzzy select one of those. Run that command with :
+" nnoremap <leader>h :SelectaHistoryCommand<cr>
+
+
+""" Airline status line """
+
+let g:airline#extensions#tabline#enabled = 1
+
+
+""" Multiple cursors """
+
+let g:multi_cursor_exit_from_visual_mode = 0
+let g:multi_cursor_exit_from_insert_mode = 0
+
+" Convert last find into multiple cursors
+nnoremap <silent> <C-h> :MultipleCursorsFind <C-R>/<CR>
+vnoremap <silent> <C-h> :MultipleCursorsFind <C-R>/<CR>
+
+
+"------------------------------------------------------------
 " Mappings {{{1
 "
 " Useful mappings
@@ -227,113 +343,5 @@ nnoremap <C-a> 0
 inoremap <C-e> <Esc>A
 inoremap <C-a> <Esc>I
 
-
-"------------------------------------------------------------
-
-" Colors
-set term=xterm-256color
-colo distinguished
-
-" Show hard tabs
-set list
-set listchars=tab:>\
-
-" Indent/dedent (`>`/`<`) without losing selection
-vnoremap > >gv
-vnoremap < <gv
-
-" Tree style file list
-let g:netrw_liststyle=3
-" Vertical split right instead of left
-"let g:netrw_altv = 1
-
-" Jump to the last position when reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
-" Auto-reload vimrc on change
-augroup myvimrc
-    au!
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-augroup END
-
-" Pathogen package manager
-execute pathogen#infect()
-call pathogen#helptags()
-
-
-""" NERDTree """
-
-"autocmd vimenter * NERDTree
-
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-map <C-\>      :NERDTreeTabsToggle<CR>
-map <leader>f  :NERDTreeFind<CR>
-
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-
-""" NERDCommenter """
-
-" Add spaces after comment delimiters by default
-"let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-
-" Set a language to use its alternate delimiters by default
-"let g:NERDAltDelims_java = 2
-
-" Add your own custom formats or override the defaults
-"let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-"let g:NERDTrimTrailingWhitespace = 1
-
-
-
-" """ Selecta """
-" 
-" " Find all files in all non-dot directories starting in the working directory.
-" " Fuzzy select one of those. Open the selected file with :e.
-" nnoremap <leader>e :SelectaFile<cr>
-" 
-" " As above, but will open in a :split
-" nnoremap <leader>s :SelectaSplit<cr>
-" 
-" " As above, but will open in a :vsplit
-" nnoremap <leader>v :SelectaVsplit<cr>
-" 
-" " As above, but will open in a :tabedit
-" nnoremap <leader>t :SelectaTabedit<cr>
-" 
-" " Find all buffers that have been opened.
-" " Fuzzy select one of those. Open the selected file with :b.
-" nnoremap <leader>b :SelectaBuffer<cr>
-" 
-" " Find previously run commands.
-" " Fuzzy select one of those. Run that command with :
-" nnoremap <leader>h :SelectaHistoryCommand<cr>
-
-
-""" Airline status line """
-
-let g:airline#extensions#tabline#enabled = 1
-
-
-""" Multiple cursors """
-
-let g:multi_cursor_exit_from_visual_mode = 0
-let g:multi_cursor_exit_from_insert_mode = 0
-"nnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
-"vnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
-
+" Gundo
+nnoremap <F5> :GundoToggle<CR>

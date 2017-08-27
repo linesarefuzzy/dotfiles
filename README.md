@@ -7,6 +7,7 @@
 ## TODO:
 
 * git-completion.bash
+* install autojump
 * gitconfig
 * gitignore
 * split into .alias, etc?
