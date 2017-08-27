@@ -17,7 +17,6 @@ alias cp="cp -i" # confirm overwrites
 alias mv="mv -i" # ditto
 alias dnsflush="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias be="bundle exec"
-#alias zed="zedrem -key E9BB9D9884B747BD8F988EABDDE89895"
 alias sdr="screen -dR"
 
 alias autojump_install="mkdir -p ~/bin && cd ~/bin && git clone git://github.com/joelthelion/autojump.git && cd autojump && ./install.py"
@@ -34,8 +33,6 @@ alias gtl="git tag -l --sort=v:refname"
 alias gta='git tag -m "" -a'
 
 # rails
-alias rc='rails console'
-alias rd='rails destroy'
 alias rdb='rails dbconsole'
 alias rdm='rake db:migrate'
 alias rdms='rake db:migrate:status'
@@ -44,15 +41,12 @@ alias rdr='rake db:rollback'
 alias rdrs='rake db:reset'
 alias rdtc='rake db:test:clone'
 alias rdtp='rake db:test:prepare'
-alias rg='rails generate'
 alias rgm='rails generate migration'
 alias rr='rake routes'
 alias rrg='rake routes | grep'
-alias rs='rails server'
 
 # command prompt
-#export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\h \[$(tput setaf 4)\]\w \\$ \[$(tput setaf 7)\]\[$(tput sgr0)\]"
-export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\h \w \\$ \[$(tput setaf 7)\]\[$(tput sgr0)\]"
+#export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\h \w \\$ \[$(tput setaf 7)\]\[$(tput sgr0)\]"
 
 # command history: ignore duplicates
 export HISTIGNORE="&"
@@ -79,7 +73,10 @@ export EDITOR=vim
 # [ -z "$STY" ] && screen -r
 
 # Activate autojump if installed
-[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+#[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
 # git tab completion
-[ $SHELL = "/bin/bash" ] && [ -f $DOTFILES/git-completion.bash ] && . $DOTFILES/git-completion.bash
+#[ $SHELL = "/bin/bash" ] && [ -f $DOTFILES/git-completion.bash ] && . $DOTFILES/git-completion.bash
+
+# Local overrides in ~/dotfiles/local.sh
+[ -f $DOTFILES/local.sh ] && . $DOTFILES/local.sh
