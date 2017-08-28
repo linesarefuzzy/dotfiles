@@ -223,6 +223,12 @@ endw
 " -----------------------------------------------------------
 " Plugins
 
+""" Yankstack """
+
+" Bug in shift-option-p mapping
+nmap P <Plug>yankstack_substitute_newer_paste
+
+
 """ NERDTree """
 
 "autocmd vimenter * NERDTree

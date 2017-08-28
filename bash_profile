@@ -51,4 +51,19 @@ export SCM_CHECK=true
 # Load Bash It
 source "$BASH_IT"/bash_it.sh
 
+#---------------------------------------------------------------------------
+
 [ -f $HOME/.profile ] && . $HOME/.profile
+
+# ls colors
+# http://www.macosxhints.com/article.php?story=20031025162727485
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+#export LSCOLORS=ExFxCxDxBxegedabagacxx
+
+# share history between open terminal windows
+# shopt -s histappend                      # append to history, don't overwrite it
+# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# git tab completion
+[ -f $DOTFILES/git-completion.bash ] && . $DOTFILES/git-completion.bash

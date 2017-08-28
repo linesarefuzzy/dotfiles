@@ -5,7 +5,7 @@ dir=dotfiles                    # dotfiles directory
 olddir=dotfiles_old             # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir
-files="profile bash_profile screenrc vimrc vim"
+files="profile bash_profile zshrc screenrc vimrc vim"
 
 prevdir=`pwd`
 cd ~
@@ -26,5 +26,13 @@ done
 #mkdir -p ~/bin
 #cd ~/bin
 #curl http://get.zedapp.org | bash
+
+echo "Change shell to zsh?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) chsh -s $(which zsh); break;;
+        No ) exit;;
+    esac
+done
 
 cd $prevdir

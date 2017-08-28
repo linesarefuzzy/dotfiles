@@ -2,7 +2,7 @@ export DOTFILES="$HOME/dotfiles"
 export TZ="America/New_York"
 
 # Update environment
-alias eup="cd ~/dotfiles && git pull origin master && cd - && source ~/.profile"
+alias eup="cd $DOTFILES && git pull origin master && cd - && source ~/.profile"
 
 #alias ls="ls -GF --color=tty"
 alias ls="ls -GF"
@@ -19,7 +19,7 @@ alias dnsflush="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias be="bundle exec"
 alias sdr="screen -dR"
 
-alias autojump_install="mkdir -p ~/bin && cd ~/bin && git clone git://github.com/joelthelion/autojump.git && cd autojump && ./install.py"
+#alias autojump_install="mkdir -p ~/bin && cd ~/bin && git clone git://github.com/joelthelion/autojump.git && cd autojump && ./install.py"
 
 # git
 alias g="git status"
@@ -51,16 +51,6 @@ alias rrg='rake routes | grep'
 # command history: ignore duplicates
 export HISTIGNORE="&"
 
-# share history between open terminal windows
-# shopt -s histappend                      # append to history, don't overwrite it
-# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
-# ls colors
-# http://www.macosxhints.com/article.php?story=20031025162727485
-export CLICOLOR=1
-export LSCOLORS=ExFxCxDxBxegedabagacad
-#export LSCOLORS=ExFxCxDxBxegedabagacxx
-
 export PATH=~/bin:$PATH:/sbin
 export EDITOR=vim
 
@@ -74,9 +64,6 @@ export EDITOR=vim
 
 # Activate autojump if installed
 #[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
-
-# git tab completion
-#[ $SHELL = "/bin/bash" ] && [ -f $DOTFILES/git-completion.bash ] && . $DOTFILES/git-completion.bash
 
 # Local overrides in ~/dotfiles/local.sh
 [ -f $DOTFILES/local.sh ] && . $DOTFILES/local.sh
