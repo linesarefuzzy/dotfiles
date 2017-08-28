@@ -13,8 +13,10 @@ mkdir -p $olddir
 
 # move any existing dotfiles in homedir to dotfiles_old directory
 for file in $files; do
-  echo "Moving .$file to $olddir"
-  mv -i ~/.$file ~/dotfiles_old/
+  if [ -f .$file ] && [ ! -L .$file ]; then
+    echo "Moving .$file to $olddir"
+    mv -i ~/.$file ~/dotfiles_old/
+  fi
 done
 
 # create symlinks
@@ -23,16 +25,20 @@ for file in $files; do
   ln -siv $dir/$file ~/.$file
 done
 
-#mkdir -p ~/bin
-#cd ~/bin
-#curl http://get.zedapp.org | bash
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 echo "Change shell to zsh?"
 select yn in "Yes" "No"; do
     case $yn in
         Yes ) chsh -s $(which zsh); break;;
-        No ) exit;;
+        No ) break;;
     esac
 done
+
+# Install Vundle and vim plugins
+echo "git clone https://github.com/VundleVim/Vundle.vim.git $dir/vim/bundle/Vundle.vim"
+git clone https://github.com/VundleVim/Vundle.vim.git $dir/vim/bundle/Vundle.vim
+vim +PluginInstall +qall
 
 cd $prevdir

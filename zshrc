@@ -46,7 +46,7 @@ DISABLE_UPDATE_PROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast autojump brew osx rails ruby sudo bundler)
+plugins=(git gitfast git-extras autojump brew osx sudo rails ruby gem bundler capistrano common-aliases)
 
 source $ZSH/oh-my-zsh.sh
 
