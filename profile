@@ -4,8 +4,8 @@ export TZ="America/New_York"
 # Update environment
 alias eup="cd $DOTFILES && git pull origin master && cd - && source ~/.profile"
 
-alias ls="ls -GF --color=tty"
-#alias ls="ls -GF"
+#alias ls="ls -GF --color=tty"
+alias ls="ls -GF"
 alias ll="ls -lh"
 alias la="ls -A"
 alias lla="ls -lhA"

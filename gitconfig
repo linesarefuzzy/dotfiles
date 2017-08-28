@@ -1,0 +1,34 @@
+[user]
+  name = Adam Konner
+  email = linesarefuzzy@gmail.com
+[diff]
+  tool = opendiff
+[merge]
+  tool = opendiff
+[filter "media"]
+  required = true
+  clean = git media clean %f
+  smudge = git media smudge %f
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+  alias = "!sh -c '[ $# = 2 ] && git config --global alias.\"$1\" \"$2\" && exit 0 || echo \"usage: git alias <new alias> <original command>\" >&2 && exit 1' -"
+[push]
+  default = simple
+[filter "hawser"]
+  clean = git hawser clean %f
+  smudge = git hawser smudge %f
+  required = true
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+[core]
+  excludesfile = ~/.gitignore
+  editor = /usr/bin/vim
