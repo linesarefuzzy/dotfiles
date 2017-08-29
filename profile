@@ -20,6 +20,7 @@ alias mv="mv -i" # ditto
 alias dnsflush="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias be="bundle exec"
 alias sdr="screen -dR"
+alias less="less -i"
 
 #alias autojump_install="mkdir -p ~/bin && cd ~/bin && git clone git://github.com/joelthelion/autojump.git && cd autojump && ./install.py"
 
