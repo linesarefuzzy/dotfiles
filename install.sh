@@ -5,11 +5,14 @@ dir=dotfiles                    # dotfiles directory
 olddir=dotfiles_old             # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir
-files="profile bash_profile zshrc screenrc vimrc vim"
+files="profile bash_profile zshrc screenrc vimrc vim gitconfig gitignore"
 
 prevdir=`pwd`
 cd ~
 mkdir -p $olddir
+
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # move any existing dotfiles in homedir to dotfiles_old directory
 for file in $files; do
@@ -24,9 +27,6 @@ for file in $files; do
   echo "Creating symlink for .$file in ~"
   ln -siv $dir/$file ~/.$file
 done
-
-# Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 echo "Change shell to zsh?"
 select yn in "Yes" "No"; do
