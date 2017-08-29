@@ -13,6 +13,7 @@ alias lld="ls -lhd"
 alias psgrep="ps ax | grep"
 alias vp="vi ~/.profile"
 alias sp="source ~/.profile"
+alias vd="vi $DOTFILES"
 alias vl="vi $DOTFILES/local.sh"
 alias cp="cp -i" # confirm overwrites
 alias mv="mv -i" # ditto
