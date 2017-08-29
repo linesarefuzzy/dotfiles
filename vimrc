@@ -348,14 +348,14 @@ inoremap <C-k> <Esc><C-y>a
 inoremap <C-j> <Esc><C-e>a
 
 " Home and end
-nmap ^[OF $
-nmap ^[OH 0
-imap ^[OF ^[$i
-imap ^[OH ^[0i
+nmap OF $
+nmap OH ^
+imap OF $a
+imap OH ^i
 nnoremap <C-e> $
-nnoremap <C-a> 0
-inoremap <C-e> <Esc>A
-inoremap <C-a> <Esc>I
+nnoremap <C-a> ^
+inoremap <C-e> $a
+inoremap <C-a> ^i
 
 " Gundo
 nnoremap <F5> :GundoToggle<CR>
