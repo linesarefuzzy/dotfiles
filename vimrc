@@ -21,6 +21,7 @@ Plugin 'sjl/gundo.vim'
 Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-unimpaired'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
