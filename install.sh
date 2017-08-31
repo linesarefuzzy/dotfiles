@@ -25,7 +25,7 @@ done
 # create symlinks
 for file in $files; do
   echo "Creating symlink for .$file in ~"
-  ln -siv $dir/$file ~/.$file
+  ln -sivn $dir/$file ~/.$file
 done
 
 echo "Change shell to zsh?"
