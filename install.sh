@@ -11,9 +11,6 @@ prevdir=`pwd`
 cd ~
 mkdir -p $olddir
 
-# Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 # move any existing dotfiles in homedir to dotfiles_old directory
 for file in $files; do
   if [ -f .$file ] && [ ! -L .$file ]; then
@@ -28,17 +25,20 @@ for file in $files; do
   ln -sivn $dir/$file ~/.$file
 done
 
-echo "Change shell to zsh?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) chsh -s $(which zsh); break;;
-        No ) break;;
-    esac
-done
-
 # Install Vundle and vim plugins
 echo "git clone https://github.com/VundleVim/Vundle.vim.git $dir/vim/bundle/Vundle.vim"
 git clone https://github.com/VundleVim/Vundle.vim.git $dir/vim/bundle/Vundle.vim
 vim +PluginInstall +qall
+
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+#echo "Change shell to zsh?"
+#select yn in "Yes" "No"; do
+#    case $yn in
+#        Yes ) chsh -s $(which zsh); break;;
+#        No ) break;;
+#    esac
+#done
 
 cd $prevdir
