@@ -220,6 +220,9 @@ while c <= 'z'
   let c = nr2char(1+char2nr(c))
 endw
 
+" Don't include cursor in selection
+set selection=exclusive
+
 
 " -----------------------------------------------------------
 " Plugins
@@ -234,6 +237,8 @@ nmap P <Plug>yankstack_substitute_newer_paste
 
 " Open a NERDTree automatically when vim starts up
 autocmd vimenter * NERDTree
+" Jump to the main window.
+autocmd VimEnter * wincmd w
 
 " Open a NERDTree automatically when vim starts up if no files were specified
 "autocmd StdinReadPre * let s:std_in=1
@@ -316,7 +321,6 @@ vnoremap <silent> <C-h> :MultipleCursorsFind <C-R>/<CR>
 "------------------------------------------------------------
 " Mappings {{{1
 "
-" Useful mappings
 
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
@@ -362,3 +366,7 @@ inoremap <C-a> ^i
 
 " Gundo
 nnoremap <F5> :GundoToggle<CR>
+
+" Cut and copy to system clipboard
+vmap <C-x> :!pbcopy<CR>  
+vmap <C-c> :w !pbcopy<CR><CR> 
