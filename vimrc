@@ -192,10 +192,6 @@ colo distinguished
 set list
 set listchars=tab:>\
 
-" Indent/dedent (`>`/`<`) without losing selection
-vnoremap > >gv
-vnoremap < <gv
-
 " Tree style file list
 let g:netrw_liststyle=3
 " Vertical split right instead of left
@@ -250,9 +246,6 @@ autocmd VimEnter * wincmd w
 
 " Close vim if the only window left open is a NERDTree
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-map <C-\>      :NERDTreeTabsToggle<CR>
-map <leader>f  :NERDTreeFind<CR>
 
 
 """ NERDCommenter """
@@ -313,14 +306,18 @@ let g:airline#extensions#tabline#enabled = 1
 let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
 
-" Convert last find into multiple cursors
-nnoremap <silent> <C-h> :MultipleCursorsFind <C-R>/<CR>
-vnoremap <silent> <C-h> :MultipleCursorsFind <C-R>/<CR>
-
 
 "------------------------------------------------------------
 " Mappings {{{1
 "
+
+" Reminders
+" <C-V> in insert mode to insert a special key sequence
+" <C-O> in insert mode to issue one normal command
+" <M-P> and <S-M-P> to scroll through yank buffers
+
+" <S-M-?> to open this cheatsheet
+map ? :e +/Mappings ~/.vimrc<CR>:nohl<CR><C-L>zt
 
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
@@ -369,4 +366,16 @@ nnoremap <F5> :GundoToggle<CR>
 
 " Cut and copy to system clipboard
 vmap <C-x> :!pbcopy<CR>  
-vmap <C-c> :w !pbcopy<CR><CR> 
+vmap <C-c> :w !pbcopy<CR><CR>
+
+" Indent/dedent (`>`/`<`) without losing selection
+vnoremap > >gv
+vnoremap < <gv
+
+map <C-\>      :NERDTreeTabsToggle<CR>
+map <leader>f  :NERDTreeFind<CR>
+
+" Convert last find into multiple cursors
+nnoremap <silent> <C-h> :MultipleCursorsFind <C-R>/<CR>
+vnoremap <silent> <C-h> :MultipleCursorsFind <C-R>/<CR>
+
