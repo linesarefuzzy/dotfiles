@@ -315,6 +315,7 @@ let g:multi_cursor_exit_from_insert_mode = 0
 " <C-V> in insert mode to insert a special key sequence
 " <C-O> in insert mode to issue one normal command
 " <M-P> and <S-M-P> to scroll through yank buffers
+" Multiple cursors: <C-N>/<C-P>; <C-X> to skip
 
 " <S-M-?> to open this cheatsheet
 map ? :e +/Mappings ~/.vimrc<CR>:nohl<CR><C-L>zt
