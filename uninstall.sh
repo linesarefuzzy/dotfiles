@@ -11,7 +11,7 @@ cd ~
 
 # Remove links
 for file in $files; do
-  if [ -f ~/.$file ] && [ -L ~/.$file ]; then
+  if [ -L ~/.$file ]; then
     echo "Removing symlink .$file"
     rm ~/.$file
   fi
