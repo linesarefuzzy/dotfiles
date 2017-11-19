@@ -19,7 +19,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/loket/oh-my-zsh/feature/ba
   exit 1
 }
 
-# move any existing dotfiles in homedir to dotfiles_old directory
+# Move any existing dotfiles in homedir to dotfiles_old directory
 for file in $files; do
   if [ -f .$file ] && [ ! -L .$file ]; then
     echo "Moving .$file to $olddir"
@@ -27,11 +27,15 @@ for file in $files; do
   fi
 done
 
-# create symlinks
+# Create symlinks
 for file in $files; do
   echo "Creating symlink for .$file in ~"
   ln -sivn $dir/$file ~/.$file
 done
+
+# Add SSH key
+mkdir -p .ssh
+cat $dir/id_rsa.pub >> .ssh/authorized_keys
 
 # Install Vundle and vim plugins
 echo "git clone https://github.com/VundleVim/Vundle.vim.git $dir/vim/bundle/Vundle.vim"
