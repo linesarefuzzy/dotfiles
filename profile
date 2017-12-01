@@ -22,7 +22,7 @@ alias be="bundle exec"
 alias sdr="screen -dR"
 alias less="less -i"
 
-#alias autojump_install="mkdir -p ~/bin && cd ~/bin && git clone git://github.com/joelthelion/autojump.git && cd autojump && ./install.py"
+alias autojump_install="mkdir -p ~/bin && cd ~/bin && git clone git://github.com/joelthelion/autojump.git && cd autojump && ./install.py"
 
 # git
 alias g="git status"
@@ -66,7 +66,7 @@ export EDITOR=vim
 # [ -z "$STY" ] && screen -r
 
 # Activate autojump if installed
-#[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
 # Local overrides in ~/dotfiles/local.sh
 [ -f $DOTFILES/local.sh ] && . $DOTFILES/local.sh

@@ -42,12 +42,4 @@ echo "git clone https://github.com/VundleVim/Vundle.vim.git $dir/vim/bundle/Vund
 git clone https://github.com/VundleVim/Vundle.vim.git $dir/vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 
-#echo "Change shell to zsh?"
-#select yn in "Yes" "No"; do
-#    case $yn in
-#        Yes ) chsh -s $(which zsh); break;;
-#        No ) break;;
-#    esac
-#done
-
 cd $prevdir
