@@ -21,9 +21,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/loket/oh-my-zsh/feature/ba
 
 # Move any existing dotfiles in homedir to dotfiles_old directory
 for file in $files; do
-  if [ -f .$file ] && [ ! -L .$file ]; then
+  if [ -e ".$file" ] && [ ! -L ".$file" ]; then
     echo "Moving .$file to $olddir"
-    mv -i ~/.$file ~/$olddir/
+    mv -i "~/.$file" "~/$olddir/"
   fi
 done
 
