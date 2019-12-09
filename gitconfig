@@ -18,6 +18,7 @@
   type = cat-file -t
   dump = cat-file -p
   alias = "!sh -c '[ $# = 2 ] && git config --global alias.\"$1\" \"$2\" && exit 0 || echo \"usage: git alias <new alias> <original command>\" >&2 && exit 1' -"
+  tags = !"for b in `git for-each-ref --format='%(refname:short)' refs/heads/`; do d=`git describe $b`; printf '%-30s %s\n' $b $d; done"
 [push]
   default = simple
 [filter "hawser"]
@@ -25,10 +26,10 @@
   smudge = git hawser smudge %f
   required = true
 [filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
-  required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [core]
   excludesfile = ~/.gitignore
   editor = /usr/bin/vim

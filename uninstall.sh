@@ -29,6 +29,8 @@ rm -rf $dir
 uninstall_oh_my_zsh
 rm -rf ~/.oh-my-zsh
 
+rmdir $olddir
+
 echo "Change shell to bash?"
 select yn in "Yes" "No"; do
     case $yn in

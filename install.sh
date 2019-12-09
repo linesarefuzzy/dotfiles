@@ -1,5 +1,5 @@
 #!/bin/bash
-# This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
+# This script creates symlinks from the home directory to specified dotfiles in ~/dotfiles, adds SSH key to authorized_keys, and installs vim plugins.
 
 dir=dotfiles                    # dotfiles directory
 olddir=dotfiles-pre-fuzzy       # old dotfiles backup directory
