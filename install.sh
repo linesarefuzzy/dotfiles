@@ -35,11 +35,12 @@ done
 
 # Add SSH key
 mkdir -p .ssh
-cat $dir/id_rsa.pub >> .ssh/authorized_keys
+grep -qxFf $dir/id_rsa.pub .ssh/authorized_keys || cat $dir/id_rsa.pub >> .ssh/authorized_keys
 
 # Install Vundle and vim plugins
 echo "git clone https://github.com/VundleVim/Vundle.vim.git $dir/vim/bundle/Vundle.vim"
 git clone https://github.com/VundleVim/Vundle.vim.git $dir/vim/bundle/Vundle.vim
+echo "vim +PluginInstall +qall"
 vim +PluginInstall +qall
 
 cd $prevdir
