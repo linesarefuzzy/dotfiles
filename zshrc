@@ -1,3 +1,5 @@
+[ -f ~/.profile ] && . ~/.profile
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -83,4 +85,3 @@ setopt extended_glob
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-[ -f ~/.profile ] && . ~/.profile

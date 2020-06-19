@@ -5,7 +5,7 @@ export TZ="America/New_York"
 alias eup="cd $DOTFILES && git pull origin master && cd - && source ~/.profile"
 
 #alias ls="ls -F --color=auto"
-alias ls="ls -F"
+alias ls="ls -FG"
 alias ll="ls -lh"
 alias la="ls -A"
 alias lla="ls -lhA"
@@ -49,7 +49,7 @@ alias rr='rake routes'
 alias rrg='rake routes | grep'
 
 # command prompt
-#export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\h \w \\$ \[$(tput setaf 7)\]\[$(tput sgr0)\]"
+export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\h \w \\$ \[$(tput setaf 7)\]\[$(tput sgr0)\]"
 
 # command history: ignore duplicates
 export HISTIGNORE="&"
