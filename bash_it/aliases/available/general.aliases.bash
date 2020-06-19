@@ -28,7 +28,6 @@ alias vbpf="vim ~/.bash_profile"
 if grep --color=auto "a" "${BASH_IT}/"*.md &> /dev/null
 then
   alias grep='grep --color=auto'
-  export GREP_COLOR='1;33'
 fi
 
 if which gshuf &> /dev/null
@@ -45,7 +44,7 @@ alias pager="$PAGER"
 
 alias q='exit'
 
-alias irc="$IRC_CLIENT"
+alias irc="${IRC_CLIENT:=irc}"
 
 # Language aliases
 alias rb='ruby'
@@ -57,6 +56,7 @@ alias ipy='ipython'
 alias piano='pianobar'
 
 alias ..='cd ..'         # Go up one directory
+alias cd..='cd ..'       # Common misspelling for going up one directory
 alias ...='cd ../..'     # Go up two directories
 alias ....='cd ../../..' # Go up three directories
 alias -- -='cd -'        # Go back
@@ -74,32 +74,12 @@ fi
 alias md='mkdir -p'
 alias rd='rmdir'
 
-# Common misspellings of bash-it
-alias shit='bash-it'
-alias batshit='bash-it'
-alias bashit='bash-it'
-alias batbsh='bash-it'
-alias babsh='bash-it'
-alias bash_it='bash-it'
-alias bash_ti='bash-it'
-
-# Additional bash-it aliases for help/show
-alias bshsa='bash-it show aliases'
-alias bshsc='bash-it show completions'
-alias bshsp='bash-it show plugins'
-alias bshha='bash-it help aliases'
-alias bshhc='bash-it help completions'
-alias bshhp='bash-it help plugins'
-alias bshsch="bash-it search"
-alias bshenp="bash-it enable plugin"
-alias bshena="bash-it enable alias"
-alias bshenc="bash-it enable completion"
-
 # Shorten extract
 alias xt="extract"
 
-# sudo vim
+# sudo editors
 alias svim="sudo vim"
+alias snano="sudo nano"
 
 # Display whatever file is regular file or folder
 catt() {
@@ -111,3 +91,12 @@ catt() {
     fi
   done
 }
+
+# The Bash-it aliases were moved to the `bash-it.aliases.bash` file. The intent of this
+# is to keep the script readable and less bloated. If you don't need to use
+# the `general` aliases, but you want the Bash-it aliases, you can disable the `general`
+# aliases and enable just the ones for Bash-it explicitly:
+# bash-it disable alias general
+# bash-it enable alias bash-it
+# shellcheck source=./bash-it.aliases.bash
+source "$BASH_IT/aliases/available/bash-it.aliases.bash"

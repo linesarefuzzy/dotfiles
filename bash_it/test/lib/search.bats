@@ -1,61 +1,82 @@
 #!/usr/bin/env bats
 
 load ../test_helper
-
 load ../../lib/composure
-load ../../plugins/available/base.plugin
+load ../../lib/helpers
+load ../../lib/utilities
+load ../../lib/search
 
 cite _about _param _example _group _author _version
 
-load ../../lib/helpers
-load ../../lib/search
+load ../../plugins/available/base.plugin
+load ../../aliases/available/git.aliases
+load ../../plugins/available/ruby.plugin
+load ../../plugins/available/rails.plugin
+load ../../completion/available/bundler.completion
+load ../../completion/available/gem.completion
+load ../../completion/available/rake.completion
 
-NO_COLOR=true
+load ../../lib/helpers
 
 function local_setup {
-  mkdir -p $BASH_IT
-  lib_directory="$(cd "$(dirname "$0")" && pwd)"
-  cp -r $lib_directory/../../* $BASH_IT/
+  setup_test_fixture
+
+  export OLD_PATH="$PATH"
+  export PATH="/usr/bin:/bin:/usr/sbin"
 }
 
-@test "helpers search plugins" {
+function local_teardown {
+  export PATH="$OLD_PATH"
+  unset OLD_PATH
+}
+
+@test "search: plugin base" {
+  export BASH_IT_SEARCH_USE_COLOR=false
   run _bash-it-search-component 'plugins' 'base'
-  [[ "${lines[0]}" =~ 'plugins' && "${lines[0]}" =~ 'base' ]]
+  assert_line -n 0 '      plugins:  base  '
 }
 
-@test "helpers search ruby gem bundle rake rails" {
-  # first disable them all, so that  the output does not appear with a checkbox
-  # and we can compare the result
-  run _bash-it-search 'ruby' 'gem' 'bundle' 'rake' 'rails' '--disable'
-  # Now perform the search
-  run _bash-it-search 'ruby' 'gem' 'bundle' 'rake' 'rails'
-  # And verify
-  assert [ "${lines[0]/✓/}" == '      aliases  =>   bundler rails' ]
-  assert [ "${lines[1]/✓/}" == '      plugins  =>   chruby chruby-auto rails ruby' ]
-  assert [ "${lines[2]/✓/}" == '  completions  =>   bundler gem rake' ]
+@test "search: git" {
+  run _bash-it-search 'git' --no-color
+  assert_line -n 0 '      aliases:  git   gitsvn  '
+  assert_line -n 1 '      plugins:  autojump   git   git-subrepo   jgitflow   jump  '
+  assert_line -n 2 '  completions:  git   git_flow   git_flow_avh  '
 }
 
-@test "search ruby gem bundle -chruby rake rails" {
-  run _bash-it-search 'ruby' 'gem' 'bundle' 'rake' 'rails' '--disable'
-  run _bash-it-search 'ruby' 'gem' 'bundle' '-chruby' 'rake' 'rails'
-  assert [ "${lines[0]/✓/}" == '      aliases  =>   bundler rails' ]
-  assert [ "${lines[1]/✓/}" == '      plugins  =>   rails ruby' ]
-  assert [ "${lines[2]/✓/}" == '  completions  =>   bundler gem rake' ]
+@test "search: ruby gem bundle rake rails" {
+  run _bash-it-search rails ruby gem bundler rake --no-color
+
+  assert_line -n 0 '      aliases:  bundler   rails  '
+  assert_line -n 1 '      plugins:  chruby   chruby-auto   rails   ruby  '
+  assert_line -n 2 '  completions:  bundler   gem   rake  '
 }
 
-@test "search (rails enabled) ruby gem bundle rake rails" {
-  run _bash-it-search 'ruby' 'gem' 'bundle' 'rake' 'rails' '--disable'
-  run _enable-alias 'rails'
-  run _bash-it-search 'ruby' 'gem' 'bundle' 'rake' 'rails'
-  assert_line "0" '      aliases  =>   bundler ✓rails'
-  assert_line "1" '      plugins  =>   chruby chruby-auto rails ruby'
-  assert_line "2" '  completions  =>   bundler gem rake'
+@test "search: rails ruby gem bundler rake -chruby" {
+  run _bash-it-search rails ruby gem bundler rake -chruby --no-color
+
+  assert_line -n 0 '      aliases:  bundler   rails  '
+  assert_line -n 1 '      plugins:  rails   ruby  '
+  assert_line -n 2 '  completions:  bundler   gem   rake  '
 }
 
-@test "search (all enabled) ruby gem bundle rake rails" {
-  run _bash-it-search 'ruby' 'gem' 'bundle' 'rake' '-chruby' 'rails' '--enable'
-  run _bash-it-search 'ruby' 'gem' 'bundle' 'rake' '-chruby' 'rails'
-  assert_line "0" '      aliases  =>   ✓bundler ✓rails'
-  assert_line "1" '      plugins  =>   ✓rails ✓ruby'
-  assert_line "2" '  completions  =>   ✓bundler ✓gem ✓rake'
+@test "search: @git" {
+  run _bash-it-search '@git' --no-color
+  assert_line -n 0 '      aliases:  git  '
+  assert_line -n 1 '      plugins:  git  '
+  assert_line -n 2 '  completions:  git  '
+}
+
+@test "search: @git --enable / --disable" {
+  set -e
+  run _bash-it-search '@git' --enable --no-color
+  run _bash-it-search '@git' --no-color
+
+  [[ "${lines[0]}"  =~ '✓' ]]
+
+  run _bash-it-search '@git' --disable --no-color
+  run _bash-it-search '@git' --no-color
+
+  assert_line -n 0 '      aliases:  git  '
+  assert_line -n 0 '      aliases:  git  '
+  assert_line -n 2 '  completions:  git  '
 }

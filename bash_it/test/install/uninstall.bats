@@ -14,28 +14,11 @@ case $OSTYPE in
 esac
 
 function local_setup {
-  mkdir -p $BASH_IT
-  lib_directory="$(cd "$(dirname "$0")" && pwd)"
-  cp -r $lib_directory/../../* $BASH_IT/
-
-  # Don't pollute the user's actual $HOME directory
-  # Use a test home directory instead
-  export BASH_IT_TEST_CURRENT_HOME="${HOME}"
-  export BASH_IT_TEST_HOME="$(cd "${BASH_IT}/.." && pwd)/BASH_IT_TEST_HOME"
-  mkdir -p "${BASH_IT_TEST_HOME}"
-  export HOME="${BASH_IT_TEST_HOME}"
-}
-
-function local_teardown {
-  export HOME="${BASH_IT_TEST_CURRENT_HOME}"
-
-  rm -rf "${BASH_IT_TEST_HOME}"
-
-  assert_equal "${BASH_IT_TEST_CURRENT_HOME}" "${HOME}"
+  setup_test_fixture
 }
 
 @test "uninstall: verify that the uninstall script exists" {
-  assert [ -e "$BASH_IT/uninstall.sh" ]
+  assert_file_exist "$BASH_IT/uninstall.sh"
 }
 
 @test "uninstall: run the uninstall script with an existing backup file" {
@@ -49,9 +32,9 @@ function local_teardown {
 
   assert_success
 
-  assert [ ! -e "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE.uninstall" ]
-  assert [ ! -e "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE.bak" ]
-  assert [ -e "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE" ]
+  assert_file_not_exist "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE.uninstall"
+  assert_file_not_exist "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE.bak"
+  assert_file_exist "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE"
 
   local md5_conf=$(md5sum "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE" | awk '{print $1}')
 
@@ -68,9 +51,9 @@ function local_teardown {
 
   assert_success
 
-  assert [ -e "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE.uninstall" ]
-  assert [ ! -e "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE.bak" ]
-  assert [ ! -e "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE" ]
+  assert_file_exist "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE.uninstall"
+  assert_file_not_exist "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE.bak"
+  assert_file_not_exist "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE"
 
   local md5_uninstall=$(md5sum "$BASH_IT_TEST_HOME/$BASH_IT_CONFIG_FILE.uninstall" | awk '{print $1}')
 

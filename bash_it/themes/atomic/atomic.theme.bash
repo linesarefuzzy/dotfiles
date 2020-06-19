@@ -164,7 +164,7 @@ ___atomic_prompt_clock() {
 }
 
 ___atomic_prompt_battery() {
-  ! command_exists battery_percentage ||
+  ! _command_exists battery_percentage ||
   [ "${THEME_SHOW_BATTERY}" != "true" ] ||
   [ "$(battery_percentage)" = "no" ] && return
 
@@ -194,7 +194,7 @@ ___atomic_prompt_char() {
   color=$white
   prompt_char="${__ATOMIC_PROMPT_CHAR_PS1}"
   if [ "${THEME_SHOW_SUDO}" == "true" ]; then
-    if [ $(sudo -n id -u 2>&1 | grep 0) ]; then
+    if sudo -vn 1>/dev/null 2>&1; then
       prompt_char="${__ATOMIC_PROMPT_CHAR_PS1_SUDO}"
     fi
   fi
