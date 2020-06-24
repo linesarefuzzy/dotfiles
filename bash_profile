@@ -49,11 +49,14 @@ export SCM_CHECK=true
 #export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
 
 # Load Bash It
-source "$BASH_IT"/bash_it.sh
+[ -f "$BASH_IT"/bash_it.sh ] && source "$BASH_IT"/bash_it.sh
 
 #---------------------------------------------------------------------------
 
 [ -f $HOME/.profile ] && . $HOME/.profile
+
+# command prompt
+export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\h \w \\$ \[$(tput setaf 7)\]\[$(tput sgr0)\]"
 
 # ls colors
 # http://www.macosxhints.com/article.php?story=20031025162727485
@@ -67,3 +70,4 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # git tab completion
 [ -f $DOTFILES/git-completion.bash ] && . $DOTFILES/git-completion.bash
+

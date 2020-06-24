@@ -2,7 +2,7 @@ export DOTFILES="$HOME/dotfiles"
 export TZ="America/New_York"
 
 # Update environment
-alias eup="cd $DOTFILES && git pull origin master && cd - && source ~/.profile"
+alias eup="cd $DOTFILES && git pull origin master && cd - && source ~/.profile && vim +PluginUpdate +qall"
 
 #alias ls="ls -F --color=auto"
 alias ls="ls -FG"
@@ -47,9 +47,6 @@ alias rdtp='rake db:test:prepare'
 alias rgm='rails generate migration'
 alias rr='rake routes'
 alias rrg='rake routes | grep'
-
-# command prompt
-export PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\h \w \\$ \[$(tput setaf 7)\]\[$(tput sgr0)\]"
 
 # command history: ignore duplicates
 export HISTIGNORE="&"

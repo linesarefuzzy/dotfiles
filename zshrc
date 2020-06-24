@@ -1,5 +1,3 @@
-[ -f ~/.profile ] && . ~/.profile
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -53,6 +51,8 @@ plugins=(git gitfast git-extras autojump brew osx sudo rails ruby gem bundler ca
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+[ -f ~/.profile ] && . ~/.profile
 
 setopt extended_glob
 

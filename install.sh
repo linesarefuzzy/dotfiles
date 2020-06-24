@@ -5,7 +5,7 @@ dir=dotfiles                    # dotfiles directory
 olddir=dotfiles-pre-fuzzy       # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir
-files="profile zshrc screenrc vimrc vim gitconfig gitignore"
+files="profile zshrc screenrc vimrc vim gitconfig gitignore bash_profile bashrc"
 
 prevdir=`pwd`
 cd ~

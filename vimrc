@@ -14,7 +14,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ervandew/supertab'
-Plugin 'jistr/vim-nerdtree-tabs'
+"Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-airline/vim-airline'
 Plugin 'sjl/gundo.vim'
@@ -22,6 +22,7 @@ Plugin 'maxbrunsfeld/vim-yankstack'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'fholgado/minibufexpl.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -219,6 +220,11 @@ endw
 " Don't include cursor in selection
 set selection=exclusive
 
+" Open all buffers in tabs
+":au BufAdd,BufNewFile * nested tab sball
+
+set encoding=utf-8
+
 
 " -----------------------------------------------------------
 " Plugins
@@ -245,7 +251,7 @@ autocmd VimEnter * wincmd w
 "autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " Close vim if the only window left open is a NERDTree
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")) | q | endif
 
 
 """ NERDCommenter """
@@ -298,7 +304,7 @@ let g:NERDCommentEmptyLines = 1
 
 """ Airline status line """
 
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
 
 
 """ Multiple cursors """
@@ -311,11 +317,13 @@ let g:multi_cursor_exit_from_insert_mode = 0
 " Mappings {{{1
 "
 
-" Reminders
+" ===== REMINDERS =====
 " <C-V> in insert mode to insert a special key sequence
 " <C-O> in insert mode to issue one normal command
 " <M-P> and <S-M-P> to scroll through yank buffers
 " Multiple cursors: <C-N>/<C-P>; <C-X> to skip
+" <C-\> toggle NERDTree
+" =====================
 
 " <S-M-?> to open this cheatsheet
 map ? :e +/Mappings ~/.vimrc<CR>:nohl<CR><C-L>zt
@@ -329,19 +337,19 @@ map Y y$
 nnoremap <C-L> :nohl<CR><C-L>
 
 " Editor tab navigation
-nnoremap <leader>t  :tabnew<CR>
-nnoremap H          :tabprev<CR>
-nnoremap L          :tabnext<CR>
-nnoremap <leader>1  :tabfirst<CR>
-nnoremap <leader>2  2gt
-nnoremap <leader>3  3gt
-nnoremap <leader>4  4gt
-nnoremap <leader>5  5gt
-nnoremap <leader>6  6gt
-nnoremap <leader>7  7gt
-nnoremap <leader>8  8gt
-nnoremap <leader>9  :tablast<CR>
-nnoremap <leader>w  :tabclose<CR>
+"nnoremap <leader>t  :tabnew<CR>
+"nnoremap H          :tabprev<CR>
+"nnoremap L          :tabnext<CR>
+"nnoremap <leader>1  :tabfirst<CR>
+"nnoremap <leader>2  2gt
+"nnoremap <leader>3  3gt
+"nnoremap <leader>4  4gt
+"nnoremap <leader>5  5gt
+"nnoremap <leader>6  6gt
+"nnoremap <leader>7  7gt
+"nnoremap <leader>8  8gt
+"nnoremap <leader>9  :tablast<CR>
+"nnoremap <leader>w  :tabclose<CR>
 "nnoremap te  :tabedit<Space>
 "nnoremap tm  :tabmove<Space>
 
@@ -349,6 +357,22 @@ nnoremap <leader>w  :tabclose<CR>
 nnoremap <leader>d  :bd<CR>
 nnoremap <leader>n  :bn<CR>
 nnoremap <leader>p  :bp<CR>
+" \b to list all buffers and switch to one by name or number
+nnoremap <Leader>b :ls<CR>:b<Space>
+nnoremap <leader>t  :MBEToggle<CR>
+nnoremap H          :MBEbp<CR>
+nnoremap L          :MBEbn<CR>
+nnoremap <leader>1  :tabfirst<CR>
+nnoremap <leader>2  :b2<CR>
+nnoremap <leader>3  :b3<CR>
+nnoremap <leader>4  :b4<CR>
+nnoremap <leader>5  :b5<CR>
+nnoremap <leader>6  :b6<CR>
+nnoremap <leader>7  :b7<CR>
+nnoremap <leader>8  :b8<CR>
+nnoremap <leader>9  :blast<CR>
+nnoremap <leader>w  :bd<CR>
+
 
 " Scrolling
 nnoremap <C-k> <C-y>
@@ -373,7 +397,7 @@ vmap <C-c> :w !pbcopy<CR><CR>
 vnoremap > >gv
 vnoremap < <gv
 
-map <C-\>      :NERDTreeTabsToggle<CR>
+map <C-\>      :NERDTreeToggleVCS<CR>
 map <leader>f  :NERDTreeFind<CR>
 
 " Convert last find into multiple cursors
