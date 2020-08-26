@@ -31,12 +31,21 @@ rm -rf ~/.oh-my-zsh
 
 rmdir $olddir
 
-echo "Change shell to bash?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) chsh -s $(which bash); break;;
-        No ) break;;
-    esac
+#echo "Change shell to bash?"
+#select yn in "Yes" "No"; do
+#    case $yn in
+#        Yes ) chsh -s $(which bash); break;;
+#        No ) break;;
+#    esac
+#done
+
+while true; do
+  read -p "Change shell to bash? " yn
+  case $yn in
+    [Yy]* ) chsh -s $(which bash); break;;
+    [Nn]* ) break;;
+    * ) echo "Please answer yes or no.";;
+  esac
 done
 
 cd $prevdir

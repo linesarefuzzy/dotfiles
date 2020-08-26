@@ -12,11 +12,9 @@ cd ~
 mkdir -p $olddir
 
 # Install oh-my-zsh
-#sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-# Use this for now in order to not start zsh at the end (https://github.com/robbyrussell/oh-my-zsh/issues/5873)
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/loket/oh-my-zsh/feature/batch-mode/tools/install.sh)" -s --batch || {
-  echo "Could not install Oh My Zsh" >/dev/stderr
-  exit 1
+omzsource="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+sh -c "$(curl -fsSL $omzsource || wget -O- $omzsource)" "" --unattended || {
+  echo "Error: Could not install Oh My Zsh" >/dev/stderr
 }
 
 # Move any existing dotfiles in homedir to dotfiles_old directory
@@ -44,6 +42,15 @@ echo "git clone https://github.com/VundleVim/Vundle.vim.git $dir/vim/bundle/Vund
 git clone https://github.com/VundleVim/Vundle.vim.git $dir/vim/bundle/Vundle.vim
 echo "vim +PluginInstall +qall"
 vim +PluginInstall +qall
+
+while true; do
+  read -p "Change shell to zsh? " yn
+  case $yn in
+    [Yy]* ) chsh -s $(which zsh); break;;
+    [Nn]* ) break;;
+    * ) echo "Please answer yes or no.";;
+  esac
+done
 
 cd $prevdir
 
