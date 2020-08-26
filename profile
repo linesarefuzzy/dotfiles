@@ -5,11 +5,12 @@ export TZ="America/New_York"
 alias eup="cd $DOTFILES && git pull origin master && cd - && source ~/.profile && vim +PluginUpdate +qall"
 
 #alias ls="ls -F --color=auto"
-alias ls="ls -FG"
+#alias ls="ls -FG"
 alias ll="ls -lh"
 alias la="ls -A"
 alias lla="ls -lhA"
 alias lld="ls -lhd"
+alias llt="ls -lht" # sort by modified date
 alias psgrep="ps ax | grep"
 alias vp="vi ~/.profile"
 alias sp="source ~/.profile"
@@ -18,7 +19,7 @@ alias vl="cd $DOTFILES && vi local.sh && cd -"
 alias cp="cp -i" # confirm overwrites
 alias mv="mv -i" # ditto
 alias dnsflush="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
-alias be="bundle exec"
+#alias be="bundle exec"
 alias sdr="screen -dR"
 alias less="less -i"
 
@@ -63,7 +64,7 @@ export EDITOR=vim
 # [ -z "$STY" ] && screen -r
 
 # Activate autojump if installed
-[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+[ -s $HOME/.autojump/etc/profile.d/autojump.sh ] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
 # Local overrides in ~/dotfiles/local.sh
 [ -f $DOTFILES/local.sh ] && . $DOTFILES/local.sh

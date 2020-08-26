@@ -29,8 +29,10 @@ done
 
 # Create symlinks
 for file in $files; do
-  echo "Creating symlink for .$file in ~"
-  ln -sivn $dir/$file ~/.$file
+  if [ ! -L .$file ]; then
+    echo "Creating symlink for .$file in ~"
+    ln -sivn $dir/$file ~/.$file
+  fi
 done
 
 # Add SSH key
@@ -44,3 +46,5 @@ echo "vim +PluginInstall +qall"
 vim +PluginInstall +qall
 
 cd $prevdir
+
+echo "Install autojump: [sudo] (apt[-get]|brew|yum|...) install autojump"

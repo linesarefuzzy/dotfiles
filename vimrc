@@ -218,7 +218,7 @@ while c <= 'z'
 endw
 
 " Don't include cursor in selection
-set selection=exclusive
+"set selection=exclusive
 
 " Open all buffers in tabs
 ":au BufAdd,BufNewFile * nested tab sball
@@ -238,13 +238,13 @@ nmap P <Plug>yankstack_substitute_newer_paste
 """ NERDTree """
 
 " Open a NERDTree automatically when vim starts up
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 " Jump to the main window.
-autocmd VimEnter * wincmd w
+"autocmd VimEnter * wincmd w
 
 " Open a NERDTree automatically when vim starts up if no files were specified
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Open NERDTree automatically when vim starts up on opening a directory
 "autocmd StdinReadPre * let s:std_in=1
