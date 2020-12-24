@@ -1,6 +1,6 @@
 [user]
 	name = Fuzzy Konner
-  email = linesarefuzzy@gmail.com
+	email = linesarefuzzy@gmail.com
 [diff]
   tool = opendiff
 [merge]

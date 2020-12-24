@@ -10,3 +10,4 @@
 
 ## TODO:
 
+- Make `.profile` not break fish

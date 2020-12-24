@@ -5,7 +5,7 @@ dir=dotfiles                    # dotfiles directory
 olddir=dotfiles-pre-fuzzy       # old dotfiles backup directory
 
 # list of files/folders to symlink in homedir
-files="profile zshrc screenrc vimrc vim gitconfig gitignore bash_profile bashrc"
+files="profile zshrc screenrc vimrc vim gitconfig gitignore bash_profile bashrc config/fish"
 
 prevdir=`pwd`
 cd ~
@@ -21,15 +21,18 @@ sh -c "$(curl -fsSL $omzsource || wget -O- $omzsource)" "" --unattended || {
 for file in $files; do
   if [ -e .$file ] && [ ! -L .$file ]; then
     echo "Moving .$file to $olddir"
-    mv -i ~/.$file ~/$olddir/
+    mv -i ~/.$file ~/$olddir/.$file
   fi
 done
 
 # Create symlinks
+mkdir -p .config
 for file in $files; do
-  if [ ! -L .$file ]; then
+  if [ -L .$file ]; then
+    echo "Skipping .$file - already linked"
+  else
     echo "Creating symlink for .$file in ~"
-    ln -sivn $dir/$file ~/.$file
+    ln -sivn ~/$dir/$file ~/.$file
   fi
 done
 
