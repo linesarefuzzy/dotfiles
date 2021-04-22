@@ -325,7 +325,7 @@ let g:multi_cursor_exit_from_insert_mode = 0
 " <C-\> toggle NERDTree
 " =====================
 
-" <S-M-?> to open this cheatsheet
+" <esc, ?> to open this cheatsheet
 map ? :e +/Mappings ~/.vimrc<CR>:nohl<CR><C-L>zt
 
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
@@ -389,9 +389,8 @@ inoremap <C-a> ^i
 " Gundo
 nnoremap <F5> :GundoToggle<CR>
 
-" Cut and copy to system clipboard
-vmap <C-x> :!pbcopy<CR>  
-vmap <C-c> :w !pbcopy<CR><CR>
+" Copy to system clipboard
+vmap <C-c> "*y
 
 " Indent/dedent (`>`/`<`) without losing selection
 vnoremap > >gv

@@ -1,3 +1,5 @@
+#! /bin/bash
+
 export DOTFILES="$HOME/dotfiles"
 export TZ="America/New_York"
 
@@ -9,6 +11,7 @@ alias eup="cd $DOTFILES && git pull origin master && cd - && source ~/.profile &
 alias ll="ls -lh"
 alias la="ls -A"
 alias lla="ls -lhA"
+alias l="ls -lhA"
 alias lld="ls -lhd"
 alias llt="ls -lht" # sort by modified date
 alias psgrep="ps ax | grep"
@@ -67,4 +70,4 @@ export EDITOR=vim
 [ -s $HOME/.autojump/etc/profile.d/autojump.sh ] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
 # Local overrides in ~/dotfiles/local.sh
-[ -f $DOTFILES/local.sh ] && . $DOTFILES/local.sh
+[ -f $DOTFILES/local.sh ] && source $DOTFILES/local.sh

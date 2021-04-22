@@ -9,7 +9,6 @@ files="profile zshrc screenrc vimrc vim gitconfig gitignore bash_profile bashrc 
 
 prevdir=`pwd`
 cd ~
-mkdir -p $olddir
 
 # Install oh-my-zsh
 omzsource="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
@@ -21,6 +20,7 @@ sh -c "$(curl -fsSL $omzsource || wget -O- $omzsource)" "" --unattended || {
 for file in $files; do
   if [ -e .$file ] && [ ! -L .$file ]; then
     echo "Moving .$file to $olddir"
+    mkdir -p $olddir
     mv -i ~/.$file ~/$olddir/.$file
   fi
 done
