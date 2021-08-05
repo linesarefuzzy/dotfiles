@@ -55,6 +55,11 @@ export HISTIGNORE="&"
 export PATH=~/bin:$PATH:/sbin
 export EDITOR=vim
 
+if [[ -d "$HOME/.rbenv" ]]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
+
 # run dropbox if not in screen and dropbox is not already running
 # if [[ -z "$STY" && ! `pgrep dropbox` ]]; then
 #   ~/.dropbox-dist/dropboxd &
