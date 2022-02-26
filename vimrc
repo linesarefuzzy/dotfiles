@@ -362,7 +362,7 @@ nnoremap <Leader>b :ls<CR>:b<Space>
 nnoremap <leader>t  :MBEToggle<CR>
 nnoremap H          :MBEbp<CR>
 nnoremap L          :MBEbn<CR>
-nnoremap <leader>1  :tabfirst<CR>
+nnoremap <leader>1  :b1<CR>
 nnoremap <leader>2  :b2<CR>
 nnoremap <leader>3  :b3<CR>
 nnoremap <leader>4  :b4<CR>

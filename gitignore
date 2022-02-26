@@ -1,5 +1,7 @@
 tags
+.tags
 .DS_Store
 scratch.txt
 *.swp
 .idea
+**.local

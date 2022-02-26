@@ -14,7 +14,7 @@ alias lla="ls -lhA"
 alias l="ls -lhA"
 alias lld="ls -lhd"
 alias llt="ls -lht" # sort by modified date
-alias psgrep="ps ax | grep"
+alias psgrep="ps aux | grep"
 alias vp="vi ~/.profile"
 alias sp="source ~/.profile"
 alias vd="cd $DOTFILES && vi"
@@ -67,7 +67,7 @@ export EDITOR=vim
 # [ -z "$STY" ] && screen -r
 
 # Activate autojump if installed
-[ -s $HOME/.autojump/etc/profile.d/autojump.sh ] && source $HOME/.autojump/etc/profile.d/autojump.sh
+#[ -s $HOME/.autojump/etc/profile.d/autojump.sh ] && source $HOME/.autojump/etc/profile.d/autojump.sh
 
 # Local overrides in ~/dotfiles/local.sh
 [ -f $DOTFILES/local.sh ] && source $DOTFILES/local.sh
